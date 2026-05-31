@@ -1,0 +1,79 @@
+---
+import "../styles/global.css";
+import Loader from "../components/Loader";
+import CommandPalette from "../components/CommandPalette";
+import ShortcutsOverlay from "../components/ShortcutsOverlay";
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogType?: "website" | "article";
+  jsonLd?: Record<string, unknown>;
+  noindex?: boolean;
+}
+
+const {
+  title = "Sahil Shaikh — Portfolio",
+  description = "Sahil Shaikh — Security researcher, writer, and builder.",
+  ogType = "website",
+  jsonLd,
+  noindex = false,
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+
+    <!-- Favicons — red period on bone tile. Order matters: SVG, .ico, sized PNGs, apple-touch. -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+    <link rel="icon" href="/favicon-16.png" type="image/png" sizes="16x16" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Sahil Shaikh" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card (summary — no og:image set) -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    {jsonLd && (
+      <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    )}
+
+    <!-- Fonts loaded via fontsource imports in global.css + self-hosted Peace Sans -->
+    <!-- Peace Sans (display font) is used by the loader on first paint — preload it. -->
+    <link
+      rel="preload"
+      href="/fonts/PeaceSans.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Skip to main content</a>
+    <Loader client:only="react" />
+    <CommandPalette client:idle />
+    <ShortcutsOverlay client:idle />
+    <main id="main">
+      <slot />
+    </main>
+  </body>
+</html>

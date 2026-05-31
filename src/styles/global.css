@@ -1,0 +1,509 @@
+@import "tailwindcss";
+@import "@fontsource/open-sauce-one/400.css";
+@import "@fontsource/open-sauce-one/400-italic.css";
+@import "@fontsource/open-sauce-one/500.css";
+@import "@fontsource/open-sauce-one/600.css";
+@import "@fontsource/open-sauce-one/700.css";
+@import "@fontsource-variable/jetbrains-mono/wght.css";
+
+@font-face {
+  font-family: "Peace Sans";
+  src:
+    url("/fonts/PeaceSans.woff2") format("woff2"),
+    url("/fonts/PeaceSans.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --wall: #faf8f5;
+  --ink: #0a0a0a;
+  /* Darkened from #ff2d1a to meet WCAG AA (4.5:1) for small red text and
+     white-on-red small buttons, while staying within the same vivid red hue.
+     #d4280e ≈ 4.8:1 on --wall, 5.1:1 on white. */
+  --red: #d4280e;
+  --divider: #ebe7e0;
+  --muted: #666;
+  --font-display: "Peace Sans", "Open Sauce One", sans-serif;
+  --font-body: "Open Sauce One", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, "SF Mono", monospace;
+}
+
+@theme {
+  --color-wall: #faf8f5;
+  --color-ink: #0a0a0a;
+  --color-red: #d4280e;
+  --color-divider: #ebe7e0;
+  --color-muted: #666;
+  --font-display: "Peace Sans", "Open Sauce One", sans-serif;
+  --font-body: "Open Sauce One", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, "SF Mono", monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100vh;
+  overflow: hidden;
+  background: var(--wall);
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  scrollbar-width: none;
+}
+
+::selection {
+  background: var(--red);
+  color: #fff;
+}
+
+@keyframes cursor-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Blog content styles — rendered MDX inside the viewer */
+.blog-content p {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1.65;
+  margin-bottom: 20px;
+}
+
+.blog-content h2 {
+  font-family: var(--font-body);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 36px 0 12px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.blog-content h3 {
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 28px 0 10px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.blog-content ul,
+.blog-content ol {
+  margin-bottom: 20px;
+  padding-left: 1.5rem;
+}
+
+.blog-content li {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1.65;
+  margin-bottom: 6px;
+}
+
+.blog-content pre {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--divider);
+  border-radius: 3px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  overflow-x: auto;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+.blog-content code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+}
+
+.blog-content p code {
+  background: rgba(0, 0, 0, 0.05);
+  padding: 0.1em 0.35em;
+  border-radius: 2px;
+}
+
+.blog-content blockquote {
+  border-left: 2px solid var(--red);
+  padding-left: 1rem;
+  margin-bottom: 20px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.blog-content a {
+  color: var(--red);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.blog-content strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* Inline post images — kept modest in width and spaced away from the prose. */
+.blog-content figure {
+  margin: 40px auto;
+  max-width: 460px;
+}
+
+.blog-content figure img,
+.blog-content img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 3px;
+}
+
+.blog-content figcaption {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+  color: var(--muted);
+  text-align: center;
+  margin-top: 10px;
+}
+
+@media (max-width: 640px) {
+  .blog-content figure {
+    margin: 28px auto;
+    max-width: 100%;
+  }
+}
+
+/* Editorial chart figures — full content width, read as part of the article.
+   Scoped under .blog-content (and max-width:none) so they override the generic
+   .blog-content figure cap above; the plain hero <figure> keeps that cap. */
+.blog-content .post-figure {
+  width: 100%;
+  max-width: none;
+  margin: 3.5rem 0;
+}
+.blog-content .post-figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0;
+}
+.blog-content .post-figure figcaption {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  color: #8a7a6c;
+  text-align: left;
+  margin-top: 0.9rem;
+  padding-left: 0.9rem;
+  border-left: 2px solid #ff2d1a;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Skip link                                                          */
+/* ------------------------------------------------------------------ */
+.skip-link {
+  position: fixed;
+  top: -100%;
+  left: 16px;
+  z-index: 100000;
+  padding: 8px 16px;
+  background: var(--ink);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  transition: top 0.15s ease;
+}
+
+.skip-link:focus {
+  top: 8px;
+  outline: 2px solid var(--red);
+  outline-offset: 2px;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Screen-reader-only (visually hidden, still announced)              */
+/* ------------------------------------------------------------------ */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Focus-visible ring — global                                        */
+/* ------------------------------------------------------------------ */
+*:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 2px;
+}
+
+/* Remove default outline on mouse clicks — :focus-visible handles keyboard */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Command palette (cmdk)                                             */
+/* ------------------------------------------------------------------ */
+.cmd-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  background: rgba(10, 10, 10, 0.2);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 18vh;
+}
+
+.cmd-positioner {
+  width: 520px;
+  max-width: calc(100vw - 32px);
+}
+
+.cmd-root {
+  background: #fff;
+  border: 1px solid var(--divider);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+}
+
+.cmd-input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--divider);
+}
+
+.cmd-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--ink);
+  outline: none;
+}
+
+.cmd-input::placeholder {
+  color: var(--muted);
+}
+
+.cmd-kbd {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  padding: 2px 6px;
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--divider);
+  border-radius: 3px;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+
+.cmd-list {
+  max-height: 340px;
+  overflow-y: auto;
+  padding: 8px 0;
+  scrollbar-width: none;
+}
+
+.cmd-list::-webkit-scrollbar {
+  display: none;
+}
+
+.cmd-empty {
+  padding: 24px 16px;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+}
+
+.cmd-group [cmdk-group-heading] {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--red);
+  padding: 8px 16px 4px;
+}
+
+.cmd-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--ink);
+  transition: background 0.1s ease;
+}
+
+.cmd-item[data-selected="true"] {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.cmd-item:active {
+  background: rgba(0, 0, 0, 0.07);
+}
+
+.cmd-item-icon {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+  width: 18px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.cmd-item-tag {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+  background: rgba(0, 0, 0, 0.04);
+  padding: 2px 6px;
+  flex-shrink: 0;
+}
+
+.cmd-item-external {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--muted);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Responsive: home desktop / mobile toggle (breakpoint 640px)        */
+/* ------------------------------------------------------------------ */
+.home-desktop {
+  display: flex;
+}
+.home-mobile {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .home-desktop {
+    display: none;
+  }
+  .home-mobile {
+    display: block;
+  }
+}
+
+/* Hide scrollbar on the mobile filter chip row */
+.mobile-chip-row {
+  scrollbar-width: none;
+}
+.mobile-chip-row::-webkit-scrollbar {
+  display: none;
+}
+
+/* ------------------------------------------------------------------ */
+/*  End-of-post dog silhouette block                                   */
+/* ------------------------------------------------------------------ */
+.end-dog {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  /* Sits on the same background as the post body; no gap to the footer. */
+  padding: 32px 24px 0;
+}
+.end-dog-img {
+  width: 120px;
+  max-width: 100%;
+}
+
+@media (max-width: 640px) {
+  .end-dog {
+    padding: 24px 16px 0;
+  }
+  .end-dog-img {
+    width: 96px;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Reduced motion — drop all transitions/animations                   */
+/* ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Secondary pages (About / Archive / 404) — mobile adaptation ≤640px */
+.secondary-topbar-desktop { flex-shrink: 0; }
+.secondary-topbar-mobile { display: none; flex-shrink: 0; }
+
+@media (max-width: 640px) {
+  .secondary-topbar-desktop { display: none; }
+  .secondary-topbar-mobile { display: block; }
+
+  .secondary-root { height: 100dvh !important; overflow: hidden !important; }
+  .secondary-main { flex: 1; min-height: 0; overflow-y: auto !important; -webkit-overflow-scrolling: touch; }
+
+  /* About */
+  .about-cols { flex-direction: column; }
+  .about-bio { padding: 28px 16px 40px !important; }
+  .about-portrait { width: auto !important; margin: 0 16px 8px !important; padding-top: 8px !important; }
+
+  /* Archive */
+  .archive-label { padding: 16px !important; }
+  .archive-divider { margin-left: 16px !important; margin-right: 16px !important; }
+  .archive-grid { grid-template-columns: 1fr !important; grid-auto-rows: 168px !important; padding-left: 16px !important; padding-right: 16px !important; }
+  .archive-cell { grid-column: auto !important; grid-row: auto !important; }
+  .archive-cell-overlay { opacity: 1 !important; }
+
+  /* 404 */
+  .nf-fragment { display: none !important; }
+  .nf-frag-keep { z-index: 0; }
+  .nf-frag-0 { top: auto !important; bottom: 36px !important; left: 16px !important; }
+  .nf-frag-2 { top: auto !important; bottom: 132px !important; left: auto !important; right: 16px !important; }
+  .nf-frag-4 { top: auto !important; bottom: 232px !important; left: 28px !important; }
+  .nf-label { position: relative !important; z-index: 1; bottom: auto !important; left: auto !important; right: auto !important; max-width: none !important; padding: 32px 24px 16px !important; text-align: center; }
+  .nf-h1-line { font-size: 38px !important; }
+  .nf-h2-line { font-size: 30px !important; }
+  .nf-home { min-height: 44px; padding: 11px 12px !important; border-bottom: none !important; text-decoration: underline !important; text-underline-offset: 3px; }
+  .nf-sstag { position: relative !important; z-index: 1; bottom: auto !important; right: auto !important; display: flex; justify-content: center; margin-top: 8px; }
+}

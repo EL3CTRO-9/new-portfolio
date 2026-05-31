@@ -1,0 +1,45 @@
+<svg width="1120" height="440" viewBox="0 0 1120 440" xmlns="http://www.w3.org/2000/svg" font-family="'Bricolage Grotesque','JetBrains Mono',sans-serif">
+  <!-- transparent background: no rect fill, no grid pattern -->
+
+  <!-- plot frame: y top=70 (index160) baseline=370 (index60); 1 idx = 3px -->
+  <line x1="90" y1="70" x2="90" y2="370" stroke="#1a1411" stroke-width="1.5"/>
+  <line x1="90" y1="370" x2="960" y2="370" stroke="#1a1411" stroke-width="1.5"/>
+
+  <!-- faint gridlines -->
+  <line x1="90" y1="310" x2="960" y2="310" stroke="#e0d2c4" stroke-width="1"/>
+  <line x1="90" y1="250" x2="960" y2="250" stroke="#e0d2c4" stroke-width="1"/>
+  <line x1="90" y1="190" x2="960" y2="190" stroke="#cdbcaf" stroke-width="1" stroke-dasharray="3 4"/>
+  <line x1="90" y1="130" x2="960" y2="130" stroke="#e0d2c4" stroke-width="1"/>
+
+  <text x="78" y="374" font-family="'JetBrains Mono',monospace" font-size="11" fill="#b5a496" text-anchor="end">60</text>
+  <text x="78" y="314" font-family="'JetBrains Mono',monospace" font-size="11" fill="#b5a496" text-anchor="end">80</text>
+  <text x="78" y="194" font-family="'JetBrains Mono',monospace" font-size="11" fill="#8a7a6c" text-anchor="end" font-weight="600">100</text>
+  <text x="78" y="134" font-family="'JetBrains Mono',monospace" font-size="11" fill="#b5a496" text-anchor="end">120</text>
+
+  <!-- x: 2022..2025 across 130..880 -->
+  <text x="130" y="392" font-family="'JetBrains Mono',monospace" font-size="12" fill="#8a7a6c" text-anchor="middle">2022</text>
+  <text x="393" y="392" font-family="'JetBrains Mono',monospace" font-size="12" fill="#8a7a6c" text-anchor="middle">2023</text>
+  <text x="656" y="392" font-family="'JetBrains Mono',monospace" font-size="12" fill="#8a7a6c" text-anchor="middle">2024</text>
+  <text x="880" y="392" font-family="'JetBrains Mono',monospace" font-size="12" fill="#8a7a6c" text-anchor="middle">2025</text>
+
+  <!-- index→y: y = 370 - (idx-60)*3 ; demand 100,104,110,118 → 190,178,160,136 ; access 100,88,74,62 → 190,226,268,304 -->
+  <path d="M130,190 L393,178 L656,160 L880,136 L880,304 L656,268 L393,226 L130,190 Z" fill="#ff2d1a" fill-opacity="0.07"/>
+
+  <polyline points="130,190 393,178 656,160 880,136" fill="none" stroke="#ff2d1a" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="130" cy="190" r="4.5" fill="#ff2d1a"/>
+  <circle cx="393" cy="178" r="4.5" fill="#ff2d1a"/>
+  <circle cx="656" cy="160" r="4.5" fill="#ff2d1a"/>
+  <circle cx="880" cy="136" r="5.5" fill="#ff2d1a"/>
+
+  <polyline points="130,190 393,226 656,268 880,304" fill="none" stroke="#1a1411" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="130" cy="190" r="4.5" fill="#1a1411"/>
+  <circle cx="393" cy="226" r="4.5" fill="#1a1411"/>
+  <circle cx="656" cy="268" r="4.5" fill="#1a1411"/>
+  <circle cx="880" cy="304" r="5.5" fill="#1a1411"/>
+
+  <!-- inline series labels at the line ends (no separate legend block) -->
+  <text x="900" y="132" font-size="18" font-weight="800" fill="#ff2d1a">+18%</text>
+  <text x="900" y="142" font-family="'JetBrains Mono',monospace" font-size="10" fill="#8a7a6c" dy="14">TOTAL DEMAND</text>
+  <text x="900" y="300" font-size="18" font-weight="800" fill="#1a1411">−38%</text>
+  <text x="900" y="310" font-family="'JetBrains Mono',monospace" font-size="10" fill="#8a7a6c" dy="14">ENTRY ACCESS</text>
+</svg>

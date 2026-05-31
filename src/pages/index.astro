@@ -1,0 +1,85 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import BlogApp from "../components/BlogApp";
+import { getCollection, render } from "astro:content";
+
+const allPosts = await getCollection("posts");
+const postsWithHtml = await Promise.all(
+  allPosts
+    .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+    .map(async (post) => {
+      const { Content } = await render(post);
+      return {
+        slug: post.data.slug,
+        title: post.data.title,
+        category: post.data.category,
+        date: post.data.date.toISOString(),
+        excerpt: post.data.excerpt,
+        tileKey: post.data.tileKey,
+        endDog: post.data.endDog,
+        dogCaption: post.data.dogCaption,
+        Content,
+      };
+    })
+);
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Sahil Shaikh",
+  jobTitle: "Cybersecurity Engineer",
+  url: "https://sahilshaikh.in",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Vadodara",
+    addressCountry: "IN",
+  },
+  sameAs: ["https://linkedin.com/in/sahil-shaikh-cs"],
+};
+---
+
+<BaseLayout
+  description="Sahil Shaikh — security researcher, writer, and builder. Ten GIAC certifications across cyber defense, cloud security, and development."
+  jsonLd={personJsonLd}
+>
+  <div id="blog-root" style="display:none;">
+    {postsWithHtml.map((post) => (
+      <div data-post-slug={post.slug}>
+        <post.Content />
+      </div>
+    ))}
+  </div>
+  <div id="blog-app">
+    <BlogApp
+      client:load
+      posts={postsWithHtml.map(({ Content, ...rest }) => ({
+        ...rest,
+        htmlContent: "",
+      }))}
+    />
+  </div>
+
+  <script>
+    function extractContent() {
+      const root = document.getElementById("blog-root");
+      if (!root) return;
+
+      const contentMap: Record<string, string> = {};
+      root.querySelectorAll("[data-post-slug]").forEach((el) => {
+        const slug = el.getAttribute("data-post-slug");
+        if (slug) {
+          contentMap[slug] = el.innerHTML;
+        }
+      });
+
+      (window as any).__POST_CONTENT__ = contentMap;
+      window.dispatchEvent(new CustomEvent("postcontent:ready"));
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", extractContent);
+    } else {
+      extractContent();
+    }
+  </script>
+</BaseLayout>

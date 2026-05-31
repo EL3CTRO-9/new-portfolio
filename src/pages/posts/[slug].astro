@@ -1,0 +1,103 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import BlogApp from "../../components/BlogApp";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection("posts");
+  return allPosts.map((post) => ({
+    params: { slug: post.data.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+
+const allPosts = await getCollection("posts");
+const postsWithHtml = await Promise.all(
+  allPosts
+    .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+    .map(async (post) => {
+      const { Content } = await render(post);
+      return {
+        slug: post.data.slug,
+        title: post.data.title,
+        category: post.data.category,
+        date: post.data.date.toISOString(),
+        excerpt: post.data.excerpt,
+        tileKey: post.data.tileKey,
+        endDog: post.data.endDog,
+        dogCaption: post.data.dogCaption,
+        Content,
+      };
+    })
+);
+
+const activePost = postsWithHtml.find((p) => p.slug === slug);
+const pageTitle = activePost ? `${activePost.title} — Sahil Shaikh` : "Sahil Shaikh";
+const pageDescription = activePost?.excerpt ?? undefined;
+
+const postJsonLd = activePost
+  ? {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      headline: activePost.title,
+      description: activePost.excerpt,
+      datePublished: activePost.date,
+      author: {
+        "@type": "Person",
+        name: "Sahil Shaikh",
+      },
+      url: new URL(Astro.url.pathname, Astro.site).href,
+      mainEntityOfPage: new URL(Astro.url.pathname, Astro.site).href,
+    }
+  : undefined;
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  ogType="article"
+  jsonLd={postJsonLd}
+>
+  <div id="blog-root" style="display:none;">
+    {postsWithHtml.map((post) => (
+      <div data-post-slug={post.slug}>
+        <post.Content />
+      </div>
+    ))}
+  </div>
+  <div id="blog-app">
+    <BlogApp
+      client:load
+      initialSlug={slug}
+      posts={postsWithHtml.map(({ Content, ...rest }) => ({
+        ...rest,
+        htmlContent: "",
+      }))}
+    />
+  </div>
+
+  <script>
+    function extractContent() {
+      const root = document.getElementById("blog-root");
+      if (!root) return;
+
+      const contentMap: Record<string, string> = {};
+      root.querySelectorAll("[data-post-slug]").forEach((el) => {
+        const slug = el.getAttribute("data-post-slug");
+        if (slug) {
+          contentMap[slug] = el.innerHTML;
+        }
+      });
+
+      (window as any).__POST_CONTENT__ = contentMap;
+      window.dispatchEvent(new CustomEvent("postcontent:ready"));
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", extractContent);
+    } else {
+      extractContent();
+    }
+  </script>
+</BaseLayout>

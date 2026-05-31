@@ -1,0 +1,89 @@
+---
+title: "The Shrinking On-Ramp"
+slug: "the-shrinking-on-ramp"
+category: "Security"
+date: 2026-06-01
+tileKey: "red_oxide"
+excerpt: "Cybersecurity is growing and hollowing out at the same time. AI isn't taking the senior jobs — it's removing the rung people used to climb to reach them. Here's what that means for anyone trying to get in, and anyone trying to stay."
+endDog: "/dogs/golden-retriever-sitting.png"
+---
+
+import heroImg from '../../assets/blog/on-the-ramp.png';
+import wideningGap from '../../assets/blog/the-shrinking-on-ramp/widening-gap-inline.svg';
+import taskSplit from '../../assets/blog/the-shrinking-on-ramp/task-split-inline.svg';
+
+
+
+There is a version of the cybersecurity story that gets repeated in every LinkedIn post, every bootcamp ad, and every "top careers of the decade" listicle: the field is exploding, there's a permanent talent shortage, and if you just get a few certs you'll walk into a six-figure job. The first part is true. The conclusion is wrong. And the gap between the two is where a lot of people are about to lose years of their lives.
+
+The field is genuinely growing. The Bureau of Labor Statistics projects 29% employment growth for information security analysts through 2034, with a median salary near $125,000 — numbers that dwarf almost every other profession. Threats are multiplying, regulation is tightening, and every company that touches data now needs people who understand how to defend it. None of that is hype.
+
+But "the field is growing" and "it's easy to get in" are two different claims, and the industry has spent a decade quietly merging them.
+
+<figure class="post-figure">
+  <img src={wideningGap.src} alt="Line chart: total cybersecurity demand rises while entry-level access falls, 2022 to 2025, indexed to 2022 = 100" />
+  <figcaption>THE FIELD GROWS, THE DOOR NARROWS — indexed composite of ISC2, CyberSeek &amp; CyberSN data.</figcaption>
+</figure>
+
+
+
+## Growth at the top, erosion at the bottom
+
+Here's the part the listicles leave out: the growth is not evenly distributed across seniority. It's concentrated at the experienced end and actively retreating at the entry end.
+
+The 2026 hiring surveys make this almost uncomfortably clear. Roughly 70% of organizations say they're prioritizing senior-level talent this year; only about 12% list junior or entry-level hiring as a primary focus. A meaningful share of companies made *zero* entry-level hires while simultaneously naming "talent shortage" as their top challenge. Read that twice. They claim they can't find people, and they refuse to hire the people who are available.
+
+The usual explanation is that companies are risk-averse and want "ready-made" capability. That's part of it. But the deeper driver is AI, and it's worth being precise about *how* AI is changing things, because the popular version is backwards.
+
+The popular version says AI will replace senior experts first — the people doing the "complicated" work — while juniors who "just need to learn the tools" stay safe. The reality is the opposite. AI is extremely good at exactly the tasks that used to define junior work: triaging alerts, parsing logs, running vulnerability scans, drafting first-pass reports, correlating events. Gartner projects that generative AI will *reduce* demand for entry-level cybersecurity roles by 2028 specifically because it automates this layer. Modern security tooling already does a startling amount on its own — a competent SIEM with decent detection content and a half-configured SOAR pipeline handles work that used to occupy a room full of tier-one analysts.
+
+What AI is *not* good at is the work that sits on top of that output: deciding what's actually exploitable versus noise, understanding how a finding maps to a specific architecture, scoping an engagement, knowing which alert is a nuisance and which is the first move of an intrusion, and translating any of it into something a business can act on. That work doesn't get automated. It gets *more* valuable, because the cheap layer underneath it just got cheaper.
+
+So the senior security professional isn't endangered by AI. They're amplified by it. The junior, whose entire value proposition was "I'll do the repetitive work while I learn," is the one standing on melting ice.
+
+## The pipeline problem nobody wants to own
+
+This is where the story stops being merely unfair and starts being structurally broken.
+
+Expertise in security is not something you can install. You earn it by doing the boring work — staring at logs until patterns become obvious, validating a hundred findings until you can smell a false positive, sitting through incidents until your instincts calibrate. The junior roles being automated away weren't just jobs. They were the *apprenticeship*. They were the mechanism by which the industry manufactured its next generation of senior people.
+
+If you remove the on-ramp, you don't get a leaner, more efficient workforce. You get a demographic cliff. The experienced people everyone is bidding for right now are a finite pool, and that pool ages out. Every senior architect, every lead pentester, every incident commander was once a junior who got a chance to be mediocre on someone else's payroll while they learned. Take that chance away from the current generation and there is no factory left to produce the seniors of 2035.
+
+The market is currently treating experienced talent as something you can simply *acquire* — poach it, outbid for it, demand 2-3 years of experience for a role you've labeled "entry-level." But you cannot acquire your way out of a supply that nobody is replenishing. The shortage the industry keeps complaining about is, in large part, a wound it is actively inflicting on itself.
+
+<figure class="post-figure">
+  <img src={taskSplit.src} alt="Bar chart ranking security tasks by share automatable by AI, from alert triage down to incident command" />
+  <figcaption>WHAT AI EATS — AI automation pressure by function. Illustrative; rankings per Gartner and ISC2 SOC-automation research.</figcaption>
+</figure>
+
+## The barrier-to-entry myth, and who profits from it
+
+Layered on top of all this is a comfortable lie: that the barrier to entry in cybersecurity is *low*.
+
+It's worth separating two things that get deliberately conflated. The barrier to *learning* security is genuinely low and getting lower — there are free labs, cheap bootcamps, open courseware, and more quality material on YouTube than any university offered a decade ago. That's real and it's good.
+
+But the barrier to *getting hired* is high and rising. And the reason you constantly hear "anyone can break into cyber" is that there's an entire industry whose revenue depends on you believing it. Bootcamps advertising 90% placement rates, cert vendors, and influencers selling roadmaps all profit from the *learning* side of the equation while quietly externalizing the *hiring* side onto you. They sell the on-ramp without mentioning that the on-ramp is being demolished.
+
+The result is a generation that's been misled at scale: thousands of newly minted Security+ holders competing for a shrinking number of genuine entry points, told the problem is that they haven't done enough labs, when the actual problem is that the entry-level tier they trained for is being absorbed by software. The "talent shortage" is real at the senior level and largely fictional at the junior level — and the people selling courses have every incentive to keep those two facts blurred together.
+
+None of this means don't enter the field. It means enter it with your eyes open, and pick your ground carefully.
+
+## What actually survives: find the deepest AI moat
+
+If the cheap layer is being automated and the valuable layer is being amplified, then the entire game — for newcomers and veterans alike — becomes finding the work with the deepest *AI moat*. By which I mean: the work that AI makes you better at rather than the work AI does instead of you.
+
+There are really two viable strategies, and they're not mutually exclusive.
+
+The first is to become exceptional at *wielding* AI in security. Not data-scientist-level — you don't need to train models — but fluent enough to know how the tools think, where they're blind, how to direct them, and how to validate what they produce. The analyst who can orchestrate AI across a detection pipeline and catch where it's wrong is worth far more than the analyst who competes with AI on the tasks AI already won. This is the most accessible moat, and it's the one I'd point most newcomers toward first, because it stacks on top of whatever else you learn.
+
+The second is to plant yourself in a niche that is *structurally* hard to automate — where the value comes from judgment, context, adversarial creativity, or accountability that nobody will let a model own. Exploit validation and exploit development. Security architecture, where the decisions depend on understanding a specific business and its risk appetite. Incident command, where someone has to make calls under uncertainty and own the consequences. Adversarial work that depends on thinking like a human attacker rather than pattern-matching like a defender. Governance and regulatory translation, where the hard part is human and organizational, not technical. The OT/ICS world, where physical consequences and brittle legacy systems keep the stakes — and the required judgment — stubbornly human.
+
+The common thread is that AI compresses repetition and rewards judgment. The durable career isn't the one furthest from AI; it's the one where AI is your force multiplier instead of your replacement. The depth of your moat is just how hard it is to turn your work into a prompt.
+
+## So where does that leave you
+
+If you're trying to get in: the field is growing, but the front door you were sold is closing. Don't compete with software on software's terms. Get genuinely good at directing AI from day one, and start building toward a niche with a real moat instead of accumulating certs for jobs that are being automated. A portfolio that shows judgment beats a wall of certificates that shows compliance.
+
+If you're already in: the comfortable part is that AI is amplifying you, not replacing you. The uncomfortable part is that the industry is quietly dismantling the system that made you, and at some point the bill for that comes due — for all of us.
+
+The shortage everyone keeps talking about is real. We're just creating it from the wrong end.

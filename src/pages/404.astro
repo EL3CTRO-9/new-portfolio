@@ -1,0 +1,12 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import NotFoundPage from "../components/NotFoundPage";
+---
+
+<BaseLayout
+  title="404 — Sahil Shaikh"
+  description="Page not found."
+  noindex={true}
+>
+  <NotFoundPage client:load />
+</BaseLayout>
