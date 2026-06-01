@@ -8,19 +8,31 @@ interface Props {
   title?: string;
   description?: string;
   ogType?: "website" | "article";
+  ogImage?: string;
   jsonLd?: Record<string, unknown>;
   noindex?: boolean;
 }
+
+// Site-wide default social image used when a page/post sets no ogImage.
+// Square branded icon — emitted as a small `summary` card, never the
+// largest-in-page image (which is why link previews grabbed the dog).
+const DEFAULT_OG_IMAGE = "/icon-512.png";
 
 const {
   title = "Sahil Shaikh — Portfolio",
   description = "Sahil Shaikh — Security researcher, writer, and builder.",
   ogType = "website",
+  ogImage,
   jsonLd,
   noindex = false,
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
+
+// Whether this page supplied its own dedicated 1200x630 social image.
+const hasDedicatedOgImage = Boolean(ogImage);
+// og:image MUST be absolute (full https origin) or LinkedIn cannot fetch it.
+const absoluteOgImage = new URL(ogImage ?? DEFAULT_OG_IMAGE, Astro.site).href;
 ---
 
 <!doctype html>
@@ -44,14 +56,21 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     <meta property="og:type" content={ogType} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:image" content={absoluteOgImage} />
+    {hasDedicatedOgImage && <meta property="og:image:width" content="1200" />}
+    {hasDedicatedOgImage && <meta property="og:image:height" content="630" />}
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content="Sahil Shaikh" />
     <meta property="og:locale" content="en_US" />
 
-    <!-- Twitter Card (summary — no og:image set) -->
-    <meta name="twitter:card" content="summary" />
+    <!-- Twitter Card — large image only when a dedicated 1200x630 og image exists -->
+    <meta
+      name="twitter:card"
+      content={hasDedicatedOgImage ? "summary_large_image" : "summary"}
+    />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={absoluteOgImage} />
 
     {jsonLd && (
       <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

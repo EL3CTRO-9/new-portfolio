@@ -19,6 +19,7 @@ const posts = defineCollection({
       "ochre",
     ]),
     excerpt: z.string(),
+    ogImage: z.string().optional(),
     endDog: z.string().optional(),
     dogCaption: z.string().optional(),
   }),

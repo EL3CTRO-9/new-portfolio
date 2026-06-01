@@ -25,6 +25,7 @@ const postsWithHtml = await Promise.all(
         date: post.data.date.toISOString(),
         excerpt: post.data.excerpt,
         tileKey: post.data.tileKey,
+        ogImage: post.data.ogImage,
         endDog: post.data.endDog,
         dogCaption: post.data.dogCaption,
         Content,
@@ -35,6 +36,7 @@ const postsWithHtml = await Promise.all(
 const activePost = postsWithHtml.find((p) => p.slug === slug);
 const pageTitle = activePost ? `${activePost.title} — Sahil Shaikh` : "Sahil Shaikh";
 const pageDescription = activePost?.excerpt ?? undefined;
+const pageOgImage = activePost?.ogImage ?? undefined;
 
 const postJsonLd = activePost
   ? {
@@ -57,6 +59,7 @@ const postJsonLd = activePost
   title={pageTitle}
   description={pageDescription}
   ogType="article"
+  ogImage={pageOgImage}
   jsonLd={postJsonLd}
 >
   <div id="blog-root" style="display:none;">
