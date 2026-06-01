@@ -63,9 +63,9 @@ export default function IntroContent() {
             marginBottom: 14,
           }}
         >
-          A security practitioner in Vadodara. Right now I'm building an ISMS
-          from scratch at a pharma company. Before this — SANS, the Internet
-          Storm Center, and nine GIAC certifications.
+          A GIAC-certified security practitioner with experience building an
+          ISMS from the ground up, cybersecurity compliance, bug bounty hunting,
+          and defense in depth.
         </p>
 
         <p
