@@ -13,10 +13,10 @@ interface Props {
   noindex?: boolean;
 }
 
-// Site-wide default social image used when a page/post sets no ogImage.
-// Square branded icon — emitted as a small `summary` card, never the
-// largest-in-page image (which is why link previews grabbed the dog).
-const DEFAULT_OG_IMAGE = "/icon-512.png";
+// Site-wide default 1200x630 social image used when a page/post sets no
+// ogImage. Always emitting an og:image keeps scrapers from grabbing the
+// largest in-page image (which is why link previews grabbed the dog).
+const DEFAULT_OG_IMAGE = "/og-image.png";
 
 const {
   title = "Sahil Shaikh — Portfolio",
@@ -29,9 +29,8 @@ const {
 
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 
-// Whether this page supplied its own dedicated 1200x630 social image.
-const hasDedicatedOgImage = Boolean(ogImage);
 // og:image MUST be absolute (full https origin) or LinkedIn cannot fetch it.
+// All OG images (per-post and the site-wide default) are 1200x630.
 const absoluteOgImage = new URL(ogImage ?? DEFAULT_OG_IMAGE, Astro.site).href;
 ---
 
@@ -57,17 +56,14 @@ const absoluteOgImage = new URL(ogImage ?? DEFAULT_OG_IMAGE, Astro.site).href;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={absoluteOgImage} />
-    {hasDedicatedOgImage && <meta property="og:image:width" content="1200" />}
-    {hasDedicatedOgImage && <meta property="og:image:height" content="630" />}
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content="Sahil Shaikh" />
     <meta property="og:locale" content="en_US" />
 
-    <!-- Twitter Card — large image only when a dedicated 1200x630 og image exists -->
-    <meta
-      name="twitter:card"
-      content={hasDedicatedOgImage ? "summary_large_image" : "summary"}
-    />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={absoluteOgImage} />
