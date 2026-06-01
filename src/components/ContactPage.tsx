@@ -401,7 +401,7 @@ export default function ContactPage() {
               >
                 <SocialTag
                   kind="in"
-                  href="https://linkedin.com/in/sahil-shaikh-cs"
+                  href="https://www.linkedin.com/in/sahil-shaikh-cs"
                   ariaLabel="LinkedIn"
                 />
               </motion.div>
@@ -423,7 +423,7 @@ export default function ContactPage() {
               >
                 <SocialTag
                   kind="gh"
-                  href="https://github.com/YOUR_GITHUB_HANDLE"
+                  href="https://github.com/EL3CTRO-9"
                   ariaLabel="GitHub"
                 />
               </motion.div>

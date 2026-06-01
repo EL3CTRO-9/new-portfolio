@@ -63,7 +63,7 @@ export default function IntroContent() {
             marginBottom: 14,
           }}
         >
-          A cybersecurity engineer in Vadodara. Right now I'm building an ISMS
+          A security practitioner in Vadodara. Right now I'm building an ISMS
           from scratch at a pharma company. Before this — SANS, the Internet
           Storm Center, and nine GIAC certifications.
         </p>
@@ -83,6 +83,38 @@ export default function IntroContent() {
           I write about defenses, markets, and what I'm reading.{" "}
           <span style={{ color: "var(--red)" }}>Pick one →</span>
         </p>
+
+        {/* Keyboard hint — home only. The "/" shortcut menu already exists;
+            this is just an unobtrusive visual cue that it's there. */}
+        <div
+          style={{
+            marginTop: 20,
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "0.4rem",
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: "0.72rem",
+            letterSpacing: "0.04em",
+            color: "#8a7a6c",
+          }}
+        >
+          <span>Press</span>
+          <kbd
+            style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: "0.7rem",
+              lineHeight: 1,
+              color: "#8a7a6c",
+              background: "#f5f3ec",
+              border: "1px solid #d8c8ba",
+              borderRadius: 4,
+              padding: "0.1rem 0.4rem",
+            }}
+          >
+            /
+          </kbd>
+          <span>to navigate</span>
+        </div>
       </div>
 
       {/* SS Tag — spray-painted signature */}

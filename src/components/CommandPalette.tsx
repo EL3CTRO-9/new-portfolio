@@ -41,8 +41,9 @@ const POSTS = [
 ];
 
 const EXTERNAL = [
-  { id: "github", label: "GitHub", href: "https://github.com/sahilshaikh", icon: "GH" },
-  { id: "linkedin", label: "LinkedIn", href: "https://linkedin.com/in/sahilshaikh", icon: "LI" },
+  { id: "github", label: "GitHub", href: "https://github.com/EL3CTRO-9", icon: "GH" },
+  { id: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/in/sahil-shaikh-cs", icon: "LI" },
+  { id: "email", label: "Email", href: "mailto:sahilnrs9@gmail.com", icon: "EM" },
   { id: "credly", label: "Credly", href: "https://www.credly.com/users/sahil-shaikh", icon: "CR" },
 ];
 

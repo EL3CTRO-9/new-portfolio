@@ -83,7 +83,7 @@ export default function CertificationsStrip() {
           marginBottom: 32,
         }}
       >
-        Ten GIAC certifications across cyber defense, cloud security, and
+        Nine GIAC certifications across cyber defense, cloud security, and
         development. All earned through SANS Technology Institute.
       </p>
 

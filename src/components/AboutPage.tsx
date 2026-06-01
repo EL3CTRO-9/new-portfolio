@@ -8,9 +8,9 @@ import { TOP_BAR_H } from "../lib/constants";
 import { TILES } from "../data/tiles";
 
 const SOCIAL_LINKS = [
-  { label: "LINKEDIN", href: "#" },
-  { label: "GITHUB", href: "#" },
-  { label: "EMAIL", href: "#" },
+  { label: "LINKEDIN", href: "https://www.linkedin.com/in/sahil-shaikh-cs" },
+  { label: "GITHUB", href: "https://github.com/EL3CTRO-9" },
+  { label: "EMAIL", href: "mailto:sahilnrs9@gmail.com" },
 ];
 
 const NAV_ITEMS = [
@@ -142,22 +142,7 @@ export default function AboutPage() {
                 textTransform: "uppercase",
               }}
             >
-              A cybersecurity engineer
-            </span>
-            <span
-              style={{
-                fontFamily: "var(--font-body)",
-                fontSize: "clamp(28px, 3.2vw, 40px)",
-                fontWeight: 400,
-                letterSpacing: "-0.01em",
-                color: "var(--muted)",
-                lineHeight: 1.1,
-                fontStyle: "italic",
-                display: "block",
-                marginTop: 4,
-              }}
-            >
-              in Vadodara.
+              A security practitioner
             </span>
           </h1>
 
@@ -177,9 +162,8 @@ export default function AboutPage() {
               marginBottom: 14,
             }}
           >
-            I build defenses for a living. Right now that means standing up an
-            ISMS at a pharma company — SIEM, EDR, DLP, policies, and an ISO
-            27001 audit on the horizon.
+            Building an ISMS from scratch, preparing for an ISO 27001 audit, and
+            doing bug bounty on the side.
           </motion.p>
 
           <motion.p
@@ -200,8 +184,7 @@ export default function AboutPage() {
               maxWidth: 420,
             }}
           >
-            Before this — SANS. Nine GIAC certifications, internships at the
-            Internet Storm Center, a bachelors. I write what I learn here.
+            GIAC certified.
           </motion.p>
 
           {/* Social links */}
